@@ -1,5 +1,5 @@
 <h1 style="text-align: center;">
-  <img src="./front-end/src/assets/GeoJotIcon.png" alt="GeoJot Logo" style="width: 100px; height: 100px;">
+  <img src="./front-end/src/assets/logo.png" alt="GeoJot Logo" style="width: 100px; height: 100px;">
   <br>
   GeoJot
 </h1>  
