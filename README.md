@@ -5,7 +5,7 @@
 </h1>  
 
 <p align="center">  
-A simplistic, open-source, and easy-to-use geolocation app that allows users to favorite spots they've visited with friends and family.
+A simplistic, open-source, and easy-to-use geolocation app that allows users to favorite spots they've visited with friends and family!
 </p> 
 
 
