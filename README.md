@@ -1,9 +1,9 @@
-<h1 style="text-align: center;">
-  <img src="./front-end/src/assets/GeoJotIcon.png" alt="GeoJot Logo" style="width: 100px; height: 100px;">
-  <br>
-  GeoJot
-</h1>  
+<p align="center">
+    <img src="./front-end/src/assets/logo.png" alt="GeoJot Logo" style="width: 100px; height: 100px;">
+</p> 
 
+<h1 align="center">GeoJot</h1>
+ 
 <p align="center">  
 A simplistic, open-source, and easy-to-use geolocation app that allows users to favorite spots they've visited with friends and family!
 </p> 
