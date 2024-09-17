@@ -29,8 +29,9 @@ coverage/
 .env.local
 .env.*.local
 
-# IDEs and editors
-.vscode/
+# IDEs, editors, configs
+.vscode/ 
+/changelog.config.js
 
 # OS generated files
 .DS_Store
