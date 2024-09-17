@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [UsersModule],
