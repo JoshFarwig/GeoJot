@@ -31,7 +31,6 @@ coverage/
 
 # IDEs, editors, configs
 .vscode/ 
-/changelog.config.js
 
 # OS generated files
 .DS_Store

@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profile                Profile?
+  pins                   Pin[]
+  sentFriendRequests     FriendRequest[] @relation("SentFriendRequests")
+  receivedFriendRequests FriendRequest[] @relation("ReceivedFriendRequests")
+  friends                User[]          @relation("UserFriends")
+  friendOf               User[]          @relation("UserFriends")
+}
+
+model Profile {
+  id     String  @id @default(uuid())
+  bio    String?
+  avatar String?
+  userId String  @unique
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+model Pin {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User    @relation(fields: [userId], references: [id])
+  photos Photo[]
+  notes  Note[]
+}
+
+model Photo {
+  id        String   @id @default(uuid())
+  url       String
+  createdAt DateTime @default(now())
+
+  pinId String
+  pin   Pin    @relation(fields: [pinId], references: [id])
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pinId String
+  pin   Pin    @relation(fields: [pinId], references: [id])
+}
+
+model FriendRequest {
+  id        String              @id @default(uuid())
+  status    FriendRequestStatus
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  senderId   String
+  sender     User   @relation("SentFriendRequests", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User   @relation("ReceivedFriendRequests", fields: [receiverId], references: [id])
+}
+
+enum FriendRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
