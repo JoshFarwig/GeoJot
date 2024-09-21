@@ -11,7 +11,12 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/main",  
+    "docker:dev:up": "docker-compose -f ../docker/docker-compose.dev.yml up -d", 
+    "docker:dev:down": "docker-compose -f ../docker/docker-compose.dev.yml down -v --remove-orphans", 
+    "docker:dev:reset": "pnpm db:dev:rm && pnpm db:dev:up", 
+    "prisma:dev:deploy": "dotenv -e ../envs/back-end/.env.dev -- npx prisma migrate deploy",
+
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",

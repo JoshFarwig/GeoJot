@@ -1,0 +1,10 @@
+node_modules
+.pnpm-debug.log
+.git
+.env
+.env.*
+*.md
+**/dist
+**/coverage
+.vscode
+.idea

@@ -25,9 +25,8 @@ coverage/
 *.tsbuildinfo
 
 # Environment variables
-.env
-.env.local
-.env.*.local
+.env/ 
+.env.*/
 
 # IDEs, editors, configs
 .vscode/ 

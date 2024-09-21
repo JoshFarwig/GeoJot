@@ -13,7 +13,7 @@ import { UsersService } from './users/users.service';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `./envs/.env${process.env.NODE_ENV || 'development'}`,
+      envFilePath: `./envs/.env.${process.env.NODE_ENV || 'dev'}`,
     }),
     PrismaModule,
     UsersModule,
