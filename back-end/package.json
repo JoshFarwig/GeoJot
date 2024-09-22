@@ -11,12 +11,13 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",  
-    "docker:dev:up": "docker-compose -f ../docker/docker-compose.dev.yml up -d", 
-    "docker:dev:down": "docker-compose -f ../docker/docker-compose.dev.yml down -v --remove-orphans", 
-    "docker:dev:reset": "pnpm db:dev:rm && pnpm db:dev:up", 
-    "prisma:dev:deploy": "dotenv -e ../envs/back-end/.env.dev -- npx prisma migrate deploy",
+    "start:prod": "node dist/main",
+    "docker:dev:up": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev up -d",
+    "docker:dev:down": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev down -v --remove-orphans",
+    "docker:dev:rm": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev rm -v --remove-orphans",
 
+    "docker:dev:reset": "pnpm db:dev:rm && pnpm db:dev:up",
+    "prisma:dev:deploy": "dotenv -e ../envs/back-end/.env.dev -- npx prisma migrate deploy",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -74,5 +75,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
 }

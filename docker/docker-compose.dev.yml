@@ -2,25 +2,25 @@ name: geojot-dev
 
 version: '3.8'
 
-env_file: 
-  - ../envs/docker/.env.dev
-
 services:
   # TODO: add reverse proxy service
 
   # TODO: add front-end service 
 
     backend:
+      container_name: backend
       build:
         context: ../back-end
         dockerfile: ../docker/back-end/Dockerfile.dev
-        ports: 
-          - "${BACKEND_HPORT}:5000"
+      env_file: ../envs/back-end/.env.dev
+      ports: 
+        - "${BACKEND_HPORT}:5000"
       volumes:
         - ../back-end:/back-end
-        - /back-end/node_modules
+        - /back-end/node_modules 
       depends_on:
-        - db
+        - db 
+
 
     db:
       container_name: db
@@ -33,8 +33,12 @@ services:
         POSTGRES_DB: ${POSTGRES_DB}
       volumes:
         - db-data:/var/lib/postgresql/data  
-      networks:
-        - geojot-network-dev
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+        start_period: 10s
 
 volumes:
   db-data:  

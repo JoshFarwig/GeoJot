@@ -11,7 +11,9 @@ export class PrismaService
     super({
       datasources: {
         db: {
-          url: config.get('DATABASE_URL'),
+          url:
+            config.get('DATABASE_URL') ||
+            'postgresql://admin:test123@localhost:5432/geojot-db-dev?schema=public',
         },
       },
     });
