@@ -11,13 +11,15 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "docker:dev:up": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev up -d",
-    "docker:dev:down": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev down -v --remove-orphans",
-    "docker:dev:rm": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev rm -v --remove-orphans",
+    "start:prod": "node dist/main", 
 
-    "docker:dev:reset": "pnpm db:dev:rm && pnpm db:dev:up",
-    "prisma:dev:deploy": "dotenv -e ../envs/back-end/.env.dev -- npx prisma migrate deploy",
+    "docker:dev:up": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev up -d", 
+    "docker:dev:rebuild": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev up --build -d",
+    "docker:dev:down": "docker-compose -f ../docker/docker-compose.dev.yml --env-file ../envs/docker/.env.dev down -v --remove-orphans",
+    "docker:dev:reset": "pnpm docker:dev:down && pnpm docker:dev:up",  
+  
+    "prisma:dev:start": "dotenv -e ../envs/back-end/.env.dev -- npx prisma generate && npx prisma db push",  
+
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
